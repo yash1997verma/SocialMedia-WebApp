@@ -45,25 +45,6 @@ module.exports.create = async function(req, res){
    }
 }
 
-// module.exports.create = function(req, res){
-//    if(req.body.password != req.body.confirm_password){
-//         return res.redirect('back');
-//    } 
-//    User.findOne({email: req.body.email}, function(error, user){
-//         if(error) {console.log('error in fintding user in signing up ');return;}
-//         if(!user){
-//             User.create(req.body, function(err, user){
-//                 User.create(req.body, function(err, user){
-//                     if(err){console.log('error in creating user while signing up'); return;}
-//                     //after user has sign up we will redirect to signIN page
-//                     return res.redirect('users/user_signIn');
-
-
-//                 })
-//             })
-//         }else{ return res.redirect('back')}
-//    });
-// }
 
 
 //signIn and create a session for the user
