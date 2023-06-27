@@ -1,7 +1,15 @@
 //starting up express server
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = 8000;
+
+//to make res readable
+app.use(express.urlencoded({extended: true}));
+
+//cookie parser
+app.use(cookieParser());
+
 const expressLayouts = require('express-ejs-layouts');
 // app.use(express.static('assets'));
 app.use('/assets', express.static('assets'));
@@ -10,6 +18,8 @@ app.use(expressLayouts);
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
+//setting up DB
+const db = require('./config/mongoose');
 
 //use express router
 app.use('/', require('./routes'));
