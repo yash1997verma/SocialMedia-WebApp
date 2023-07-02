@@ -29,6 +29,7 @@ const db = require('./config/mongoose');
 //maintaining session using mongoDB
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+require('dotenv').config();
 
 
 //setting up views engine
@@ -37,6 +38,7 @@ app.set('views', './views');
 
 
 //setting up passport for local use
+
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 //mongo store is used to store the session cookie in the DB
@@ -53,7 +55,7 @@ app.use(session({
     store: MongoStore.create(
         
         {
-            mongoUrl: 'mongodb+srv://root:root@yashdb.ptmfvsc.mongodb.net/',
+            mongoUrl: process.env.MongoUrl,
             autoRemove: 'disabled'
         },
         function(err){

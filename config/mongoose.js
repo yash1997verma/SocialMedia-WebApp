@@ -4,10 +4,9 @@ require('dotenv').config();
 async function main() {
   try {
     // for atlas server
-    // await mongoose.connect(process.env.MongoUrl); 
+    await mongoose.connect(process.env.MongoUrl); 
     // for local mongoDB server
     // await mongoose.connect('mongodb://127.0.0.1:27017/'); 
-    await mongoose.connect('mongodb+srv://root:root@yashdb.ptmfvsc.mongodb.net/');
     console.log("DB connected");
    
   } catch (error) {
