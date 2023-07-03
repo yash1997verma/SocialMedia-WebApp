@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
 
-const postSchema = new moongoose.Schema({
+
+const postSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true
     },
-    user:{
-        type: mongoose.Schema.ObjecId,
-        refer:'User'
+    user:{//referencing any other schema will help us establish relationship
+        type: mongoose.Schema.ObjectId,
+        ref:'User'
     }
+   
+    
 },{
     //automatically gets two fields in our DB, created at, updated at
     timestamps: true
