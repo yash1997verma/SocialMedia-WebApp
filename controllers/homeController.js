@@ -7,6 +7,13 @@ module.exports.home = async function(req, res){
         const allPosts = await Post.
         find({}).
         populate('user').
+        populate({
+            path: 'comments',
+            populate: {
+                path: 'user'
+            }
+            
+        }).
         exec();
         
         return res.render('home', {
