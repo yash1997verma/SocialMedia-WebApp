@@ -1,9 +1,32 @@
 //importing user model
 const User = require('../models/user')
-module.exports.profile = function(req,res){
-    res.render('user_profile', {
-        title:"user Profile"
-    });
+module.exports.profile = async function(req,res){
+    try{
+        const users = await User.findById(req.params.id);
+        
+        res.render('user_profile', {
+            title:"user Profile",
+            profile_user: users
+        });
+    }catch(err){
+        console.log(`error in profile ${err}`)
+    }
+    
+}
+
+//for updating user info, through form on profile page
+module.exports.update = async (req, res )=>{
+    try{
+        // console.log(req.body);
+        if(req.user.id == req.params.id){
+            await User.findByIdAndUpdate(req.params.id, req.body);//this will update the info of current form  
+            res.redirect('back');
+        }else{
+           res.status(401).send("Unauthorized"); 
+        }
+    }catch(err){
+        console.log(`error in updating user info ${err}`);
+    }
 }
 
 //redner the sign up page

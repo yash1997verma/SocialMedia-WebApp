@@ -1,5 +1,5 @@
 const Post = require('../models/post')
-
+const User = require('../models/user');
 
 module.exports.home = async function(req, res){
     try{
@@ -15,10 +15,12 @@ module.exports.home = async function(req, res){
             
         }).
         exec();
-        
+        //getting all the users, to display
+        const allUsers  = await User.find({});
         return res.render('home', {
             title:"SocialMedia-WebApp ",
-            posts: allPosts  
+            posts: allPosts ,
+            all_users: allUsers
         });
     }catch(err){
         console.log(`${err}`);
